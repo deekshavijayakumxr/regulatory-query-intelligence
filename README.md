@@ -125,6 +125,38 @@ Interactive Analysis & Reporting
 - Performed error analysis to identify common classification errors and areas for improvement.
 - Conducted confidence-based analysis to understand prediction reliability.
 
+## Model Performance
+
+The models were evaluated using an **80/20 train-test split**, with performance measured on unseen test data.
+
+| Approach | Category Accuracy | Subcategory Accuracy |
+|---|---:|---:|
+| Cosine Similarity | 73.04% | 51.13% |
+| SVM | 78.61% | 54.96% |
+| Hierarchical SVM | 78.61% | 58.78% |
+| **Hierarchical SVM + CTD Metadata** | **78.31%** | **59.19%** |
+
+### Key Findings
+
+- **Hierarchical classification** improved subcategory prediction compared with standard SVM.
+- Incorporating **CTD metadata** produced the strongest subcategory accuracy at **59.19%**.
+- **TF-IDF-based approaches** performed better than the evaluated Word2Vec approaches for this classification task.
+- Confidence-based analysis showed that **higher-confidence predictions were substantially more reliable**.
+
+### Final Model Architecture
+
+```text
+Representative Text + CTD Section
+              ↓
+            TF-IDF
+              ↓
+    Hierarchical SVM
+              ↓
+          Category
+              ↓
+Category-Specific Subcategory
+          Classifier
+
 ### Excel & VBA Automation
 
 - Integrated machine learning outputs into an Excel-based workflow.
